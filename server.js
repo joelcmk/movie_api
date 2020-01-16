@@ -9,8 +9,10 @@ const http = require('http'),
       filePath = '';
     if (q.pathname.includes('documentation')) {
       filePath = (__dirname + '/documentation.html');
+      console.log('documentation');
     } else {
       filePath = 'index.html';
+      console.log('index')
     }
 
     fs.appendFile('log.txt', 'URL: ' + addr + '\nTimestamp: ' + new Date() + '\n\n', function(err) {
