@@ -1,12 +1,86 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <h1>MyFlix</h1>
-    <p>The web application provides users with access to information about different movies, directors, and genres. Users are able to sign up, update their personal information, and create a list of their favorite
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
+</head>
+<body>
+  <h1>MyFlix</h1>
+  <p>The web application provides users with access to information about different movies, directors, and genres. Users are able to sign up, update their personal information, and create a list of their favorite
 movies.</p>
-  </body>
+  <table>
+    <tr>
+      <th>REQUEST</th>
+      <th>URL</th>
+      <th>HTTP/METHOD</th>
+    </tr>
+    <tr>
+      <th>Get a list of all the movies</th>
+      <th>/movies</th>
+      <th>GET</th>
+      <th>None</th>
+      <th>A JSON object holding data about all the movies</th>
+    </tr>
+    <tr>
+      <th>Return data about a single movie by name</th>
+      <th>/movies/[name]</th>
+      <th>GET</th>
+      <th>None</th>
+      <th>A JSON object holding data
+about a single movie,
+containing an name, director, description and
+an image.</th>
+    </tr>
+    <tr>
+      <th>Get data about the genre by name</th>
+      <th>/movies/[name]/genere</th>
+      <th>GET</th>
+      <th>None</th>
+      <th>A JSON object holding the genere of a single movie.</th>
+    </tr>
+    <tr>
+      <th>Get data about a director by name</th>
+      <th>/movies/[name]/director</th>
+      <th>GET</th>
+      <th>None</th>
+      <th>A JSON object holding data about the director of a single movie.</th>
+    </tr>
+    <tr>
+      <th>Add new users</th>
+      <th>/users</th>
+      <th>POST</th>
+      <th>A JSON object holding data about the user to add.</th>
+      <th>A JSON object holding data about the user that was added.</th>
+    </tr>
+    <tr>
+      <th>Update user info </th>
+      <th>/users/[user]/info</th>
+      <th>PUT</th>
+      <th>GET</th>
+      <th>GET</th>
+    </tr>
+    <tr>
+      <th>Allow users to add a movie from their list of favorites.</th>
+      <th>/users/[user]/favorites</th>
+      <th>POST</th>
+      <th>A JSON object holding data about the user's favorite movie to add.</th>
+      <th>A JSON object holding data about the user's favorite movie that was added.</th>
+    </tr>
+    <tr>
+      <th>Remove a movie from their list of favorites.</th>
+      <th>/users/[user]/favorites/name]</th>
+      <th>DELETE</th>
+      <th>None</th>
+      <th>A text message indicating whether the movie was successfully removed from the favorites.</th>
+    </tr>
+    <tr>
+      <th>Remove user</th>
+      <th>users/[user]</th>
+      <th>DELETE</th>
+      <th>None</th>
+      <th>A text message indicating whether the user was successfully removed.</th>
+    </tr>
+  </table>
+</body>
 </html>
