@@ -24,7 +24,7 @@ movies.</p>
     </tr>
     <tr>
       <th>Return data about a single movie by name</th>
-      <th>/movies/[name]</th>
+      <th>/movies/[title]</th>
       <th>GET</th>
       <th>None</th>
       <th>A JSON object holding data
@@ -34,14 +34,14 @@ an image.</th>
     </tr>
     <tr>
       <th>Get data about the genre by name</th>
-      <th>/movies/[name]/genere</th>
+      <th>/movies/[title]/genre</th>
       <th>GET</th>
       <th>None</th>
       <th>A JSON object holding the genere of a single movie.</th>
     </tr>
     <tr>
       <th>Get data about a director by name</th>
-      <th>/movies/[name]/director</th>
+      <th>/movies/[title]/director</th>
       <th>GET</th>
       <th>None</th>
       <th>A JSON object holding data about the director of a single movie.</th>
@@ -51,25 +51,35 @@ an image.</th>
       <th>/users</th>
       <th>POST</th>
       <th>A JSON object holding data about the user to add.</th>
-      <th>A JSON object holding data about the user that was added.</th>
+      <th>A JSON object holding data about the user that was added. e.g. {
+  "Username": "ryan",
+  "Password": "47474",
+  "Email": "ryan@gmail.com",
+  "Birthday" : "1992-04-19"
+}  </th>
     </tr>
     <tr>
       <th>Update user info </th>
-      <th>/users/[user]/info</th>
+      <th>/users/[user]</th>
       <th>PUT</th>
-      <th>GET</th>
-      <th>GET</th>
+      <th>A JSON object holding data about the information to update.</th>
+      <th>A JSON object holding data about the information updated. e.g. {
+  "Username": "ryan",
+  "Password": "47474",
+  "Email": "ryan@gmail.com",
+  "Birthday" : "1992-04-19"
+}</th>
     </tr>
     <tr>
       <th>Allow users to add a movie from their list of favorites.</th>
-      <th>/users/[user]/favorites</th>
+      <th>/users/[user]/Movies/[MovieID]</th>
       <th>POST</th>
-      <th>A JSON object holding data about the user's favorite movie to add.</th>
+      <th>None.</th>
       <th>A JSON object holding data about the user's favorite movie that was added.</th>
     </tr>
     <tr>
       <th>Remove a movie from their list of favorites.</th>
-      <th>/users/[user]/favorites/name]</th>
+      <th>/users/[user]/Movies/[title]</th>
       <th>DELETE</th>
       <th>None</th>
       <th>A text message indicating whether the movie was successfully removed from the favorites.</th>

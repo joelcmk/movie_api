@@ -1,0 +1,4 @@
+{"_id":{"$oid":"5e39962adfaabec038532348"},"Username":"yulissa","Password":"0811","Email":"yulissach@gmail.com","Birth_Date":{"$date":"1997-08-11T05:00:00Z"},"Favorite":[{"$oid":"5e38cf28dfaabec03853233b"}]}
+{"_id":{"$oid":"5e39968cdfaabec038532349"},"Username":"hectorcmk","Password":"2331","Email":"hectorcmk@gmail.com","Birth_Date":{"$date":"2001-12-12T06:00:00Z"},"Favorite":[{"$oid":"5e38da04dfaabec038532342"}]}
+{"_id":{"$oid":"5e3996dbdfaabec03853234a"},"Username":"eduardo","Password":"2625","Email":"eduardocmk@gmail.com","Birth_Date":{"$date":"1992-03-25T06:00:00Z"},"Favorite":[{"$oid":"5e38d3c9dfaabec03853233e"}]}
+{"_id":{"$oid":"5e39a345dfaabec03853234c"},"Username":"maria","Password":"9703","Email":"marialozano@gmail.com","Birth_Date":{"$date":"1976-05-12T05:00:00Z"},"Favorite":[{"$oid":"5e38d95adfaabec038532341"}]}
