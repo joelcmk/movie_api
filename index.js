@@ -8,14 +8,31 @@ const Movies = Models.Movie;
 const Users = Models.User;
 const passport = require('passport');
 require('./passport');
+const { check, validationResult } = require('express-validator');
+
 
 mongoose.connect('mongodb://localhost:27017/movies', {useNewUrlParser: true});
 
-
 app.use(bodyParser.json());
 
-
 var auth = require('./auth')(app);
+
+const cors = require('cors');
+app.use(cors());
+
+var allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+
+app.use(cors({
+  origin: function(origin, callback){
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ //If a specific origin isn't found on the list of allowed origins
+      var message = 'The CORS policy for this application doesm\'t allow acces from origin' + origin;
+      return callback(new Error(message), false);
+    }
+    return callback(null, true);
+  }
+}));
+
 
 
 
@@ -69,16 +86,28 @@ app.post("/users", function(req, res) {
 });
 
 //Add new users
-app.post('/users', function(req, res) {
-  Users.findOne({ Username : req.body.Username })
+app.post('/users', [check('Username', 'Username is required').isLength({min:5}),
+ check('Username', 'Username contains non alphanumeric characters - not allowed.').isAphanumeric(),
+ check('Password', 'Password is required').not().isEmpty(),
+ check('Email', 'Email does not appear to be valid').isEmail()], function(req, res) {
+
+   //Check the validation object for errors
+   var errors = validationResult(req);
+
+   if (!errors.isEmpty()) {
+     return res.status(422).json({ errors: errors.array() });
+   }
+
+  var hashedPassword = Users.hashPassword(req.body.Password);
+  Users.findOne({ Username : req.body.Username }) // Search to see if a user with the requested username already exists
   .then(function(user) {
-    if (user) {
+    if (user) { //If the user is found, send a response that it already exists.
       return res.status(400).send(req.body.Username + "already exists");
     } else {
       Users
       .create({
         Username: req.body.Username,
-        Password: req.body.Password,
+        Password: hashedPassword,
         Email: req.body.Email,
         Birthday: req.body.Birthday
       })
@@ -166,6 +195,7 @@ app.post('/users/:Username/Movies/:MovieID', passport.authenticate('jwt', { sess
 app.use(express.static('public'));
 
 // Listen for requests
-app.listen(8080, () =>
+var port = process.env.PORT || 3000;
+app.listen(port, "0.0.0.0", function() =>
   console.log('My app is listen on port 8080')
 );
