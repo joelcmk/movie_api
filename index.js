@@ -21,7 +21,7 @@ var auth = require('./auth')(app);
 const cors = require('cors');
 app.use(cors());
 
-var allowedOrigins = *;
+var allowedOrigins = ['*'];
 
 app.use(cors({
   origin: function(origin, callback){
