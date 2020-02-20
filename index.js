@@ -21,7 +21,7 @@ var auth = require('./auth')(app);
 const cors = require('cors');
 app.use(cors());
 
-var allowedOrigins = ['http://localhost:808', 'https://my-flix-2020.herokuapp.com/'];
+var allowedOrigins = *;
 
 app.use(cors({
   origin: function(origin, callback){
