@@ -21,7 +21,7 @@ var auth = require('./auth')(app);
 const cors = require('cors');
 app.use(cors());
 
-var allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+var allowedOrigins = ['http://localhost:808', '0.0.0.0'];
 
 app.use(cors({
   origin: function(origin, callback){
