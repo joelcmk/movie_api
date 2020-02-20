@@ -81,10 +81,10 @@ app.get("/movies/:Title/Director", passport.authenticate('jwt', { session: false
   });
 });
 
-/*Get a list of all the users
-app.post("/users", function(req, res) {
+//Get a list of all the users
+app.get("/users", function(req, res) {
   Users.find().then(movies => res.json(movies));
-}); */
+});
 
 //Add new users
 app.post('/users',
