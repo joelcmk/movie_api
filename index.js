@@ -11,8 +11,8 @@ require('./passport');
 const { check, validationResult } = require('express-validator');
 
 
-//mongoose.connect('mongodb://localhost:27017/movies', {useNewUrlParser: true});
-mongoose.connect('mongodb+srv://myFlixDBadmin:Newyork_12@cluster0-3ykus.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/movies', {useNewUrlParser: true});
+//mongoose.connect('mongodb+srv://myFlixDBadmin:Newyork_12@cluster0-3ykus.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
 
 app.use(bodyParser.json());
 
@@ -199,6 +199,6 @@ app.use(express.static('public'));
 
 // Listen for requests
 var port = process.env.PORT || 3000;
-app.listen(port, "0.0.0.0", function() =>
-  console.log('My app is listen on port 8080')
-);
+app.listen(port, "0.0.0.0", function() {
+console.log("Listening on Port 3000");
+});
