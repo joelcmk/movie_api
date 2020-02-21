@@ -82,7 +82,7 @@ app.get("/movies/:Title/Director", passport.authenticate('jwt', { session: false
 });
 
 //Get a list of all the users
-app.get("/users", function(req, res) {
+app.get("/user", function(req, res) {
   Users.find().then(movies => res.json(movies));
 });
 
