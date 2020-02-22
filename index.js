@@ -35,8 +35,6 @@ app.use(cors({
 }));
 
 
-
-
 // Gets the list of data about all the movies
 app.get("/movies", passport.authenticate('jwt', { session: false }), function(req, res) {
   Movies.find()
@@ -127,7 +125,19 @@ app.post('/users',
 });
 
 //Update User info
-app.put('/users/:Username', passport.authenticate('jwt', { session: false }), function(req, res) {
+app.put('/users/:Username',
+ [check('Username'), ('Username is required').isLength({min:5}),
+ check('Username'), ('Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+ check('Password'), ('Password is required').not().isEmpty(),
+check('Email'), ('Email does not appear to be valid').isEmail()],
+ passport.authenticate('jwt', { session: false }), function(req, res) {
+
+  //Check the validation object for errors
+  var errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  }
   Users.findOneAndUpdate({ Username : req.params.Username }, {
     $set :
     {
