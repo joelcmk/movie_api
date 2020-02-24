@@ -86,7 +86,7 @@ app.get("/users", function(req, res) {
 
 //Add new users
 app.post('/users',
-  [check('Username', 'Username is required').isLength({min: 5}),
+  [check('Username', 'Username is required').isLength({min: 4}),
   check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
   check('Password', 'Password is required').not().isEmpty(),
   check('Email', 'Email does not appear to be valid').isEmail()],(req, res) => {
