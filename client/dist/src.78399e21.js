@@ -30128,7 +30128,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      _axios.default.get('<my-flix-2020.herokuapp.com/movies>').then(function (response) {
+      _axios.default.get('https://my-flix-2020.herokuapp.com/movies').then(function (response) {
         // Assign the result to the state
         _this2.setState({
           movies: response.data
