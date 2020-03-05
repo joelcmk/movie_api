@@ -1,25 +1,20 @@
 import React from 'react';
-import { MainView } from '../main-view/main-view';
 
 export class MovieView extends React.Component {
 
   constructor() {
     super()
 
-    this.state = {}
+    this.state = {};
   }
 
-  back() {
-    return MainView
-  }
 
   render() {
-    const { movie } = this.props;
-
+    const { movie, onClick } = this.props;
     if (!movie) return null;
-
     return (
-      <div className="movie-view">
+
+      < div className="movie-view" >
         <img className="movie-poster" src={movie.ImagePath} />
         <div className="movie-title">
           <span className="label">Title: </span>
@@ -37,8 +32,8 @@ export class MovieView extends React.Component {
           <span className="label">Director:</span>
           <span className="value">{movie.Director.Name}</span>
         </div>
-        <button onClick={this.back}>Go back</button>
-      </div>
+        <button onClick={() => onClick()} className="back-button">Back</button>
+      </div >
     );
   }
 }
