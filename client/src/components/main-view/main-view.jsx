@@ -31,12 +31,6 @@ export class MainView extends React.Component {
       });
   }
 
-  originalState() {
-    this.setState({
-      movies: this.state.data
-    })
-  }
-
   onMovieClick(movie) {
     this.setState({
       selectedMovie: movie
@@ -44,8 +38,6 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const data = this.state.data
-    console.log(movies)
     // If the state isn't initialized, this will throw on runtime
     // before the data is initially loaded
     const { movies, selectedMovie } = this.state;

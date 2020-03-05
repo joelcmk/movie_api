@@ -30298,13 +30298,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "originalState",
-    value: function originalState() {
-      this.setState({
-        movies: this.state.data
-      });
-    }
-  }, {
     key: "onMovieClick",
     value: function onMovieClick(movie) {
       this.setState({
@@ -30316,10 +30309,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var data = this.state.data;
-      console.log(movies); // If the state isn't initialized, this will throw on runtime
+      // If the state isn't initialized, this will throw on runtime
       // before the data is initially loaded
-
       var _this$state = this.state,
           movies = _this$state.movies,
           selectedMovie = _this$state.selectedMovie; // Before the movies have been loaded
