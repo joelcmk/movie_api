@@ -13,8 +13,7 @@ export class MovieView extends React.Component {
     const { movie, onClick } = this.props;
     if (!movie) return null;
     return (
-
-      < div className="movie-view" >
+      <div className="movie-view">
         <img className="movie-poster" src={movie.ImagePath} />
         <div className="movie-title">
           <span className="label">Title: </span>
