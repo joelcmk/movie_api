@@ -11,13 +11,13 @@ export class MovieCard extends React.Component {
     const { movie, onClick } = this.props;
 
     return (
-      <Container className="test">
+      <Container className="card-container">
         <Card style={{ with: '16rem' }}>
           <Card.Img variant="top" src={movie.ImagePath} />
           <Card.Body>
             <Card.Title>{movie.Title}</Card.Title>
             <Card.Text>{movie.Description}</Card.Text>
-            <Button onClick={() => onClick(movie)} variant="link">Open</Button>
+            <Button className="open-card" onClick={() => onClick(movie)} variant="link">Open</Button>
           </Card.Body>
         </Card >
       </Container>

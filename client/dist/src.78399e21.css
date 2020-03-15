@@ -5,15 +5,34 @@ body {
 .loginContainer {
   background-color: #44BBA4;
   border-radius: 8px;
+  padding-bottom: 10px;
+  border: 3px solid green;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-.test {
-  width: 300px;
+
+#loginButton {
+  background-color: #E7BB41;
+  border: 0;
 }
-body {
-  background-color: blue;
+
+#registerButton {
+  background-color: #393E41;
+  border: 0;
 }
-.my-flix {
-  color: steelblue;
+.card-container {
+  width: 200px;
+  padding: 0;
+  margin-top: 10px;
+  margin-left: 0;
+}
+
+.open-card {
+  background-color: #E7BB41;
+  border: 0;
+  color: white;
 }
 
 /*# sourceMappingURL=/src.78399e21.css.map */
