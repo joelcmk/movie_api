@@ -10,7 +10,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-//import './main-view.scss';
+import './main-view.scss';
 
 export class MainView extends React.Component {
   constructor() {
@@ -23,7 +23,8 @@ export class MainView extends React.Component {
       movies: null,
       selectedMovie: null,
       user: null,
-      register: false
+      register: false,
+      registred: null
     };
   }
 
@@ -53,22 +54,28 @@ export class MainView extends React.Component {
     });
   }
 
+
   register() {
     this.setState({
       register: true
     })
   }
 
+  onSignedIn(user) {
+    this.setState({
+      registred: user
+    })
+  }
+
+
   render() {
     // If the state isn't initialized, this will throw on runtime
     // before the data is initially loaded
     const { movies, selectedMovie, user, register } = this.state;
 
-    //if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-    //if (register) return <RegistrationView onClick={() => this.register(true)} />
     if (!user && register === false) return <LoginView onClick={() => this.register()} onLoggedIn={user => this.onLoggedIn(user)} />
 
-    if (register) return <RegistrationView onClick={() => this.alreadyMember()} onSignedIn={user => this.onSignedIn(user)} />
+    if (register) return <RegistrationView onSignedIn={user => this.onSignedIn(user)} />
 
     // Before the movies have been loaded
     if (!movies) return <div className="main-view" />;

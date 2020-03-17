@@ -13,26 +13,58 @@ body {
   transform: translate(-50%, -50%);
 }
 
-#loginButton {
+.loginButton {
   background-color: #E7BB41;
+  color: #393E41;
   border: 0;
+  margin-top: 10px;
 }
 
-#registerButton {
+.registerButton {
   background-color: #393E41;
   border: 0;
 }
 .card-container {
-  width: 200px;
+  width: 250px;
   padding: 0;
   margin-top: 10px;
   margin-left: 0;
+  border: 3px solid green;
+  border-radius: 8px;
 }
 
-.open-card {
+.open-card_button {
   background-color: #E7BB41;
   border: 0;
-  color: white;
+  color: #393E41;
+}
+
+.card-img {
+  height: 350px;
+}
+
+.card-body {
+  background-color: #44BBA4;
+  padding: 10px;
+}
+
+.card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 100px;
+}
+.back-button {
+  background-color: #E7BB41;
+  border: 0;
+  color: #393E41;
+}
+
+.movie-poster {
+  width: 350px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
 }
 
 /*# sourceMappingURL=/src.78399e21.css.map */

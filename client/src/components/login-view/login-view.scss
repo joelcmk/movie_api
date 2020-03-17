@@ -13,12 +13,14 @@ body {
   transform: translate(-50%, -50%);
 }
 
-#loginButton {
+.loginButton {
   background-color: #E7BB41;
+  color: #393E41;
   border: 0;
+  margin-top: 10px;
 }
 
-#registerButton {
+.registerButton {
   background-color: #393E41;
   border: 0;
 }

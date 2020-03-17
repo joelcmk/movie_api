@@ -1,12 +1,29 @@
 .card-container {
- width: 200px;
+ width: 250px;
  padding: 0;
  margin-top: 10px;
  margin-left: 0;
+ border: 3px solid green;
+ border-radius: 8px;
 }
 
-.open-card{
+.open-card_button{
   background-color: #E7BB41;
   border: 0;
-  color: white;
+  color: #393E41;
+}
+.card-img {
+  height: 350px;
+}
+
+.card-body {
+  background-color: #44BBA4;
+  padding: 10px;
+}
+
+.card-text {
+ // white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 100px;
 }

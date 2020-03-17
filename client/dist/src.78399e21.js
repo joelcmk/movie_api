@@ -32382,76 +32382,69 @@ function LoginView(props) {
       password = _useState4[0],
       setPassword = _useState4[1];
 
-  var handleSubmit = function handleSubmit() {
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
     console.log(username, password);
     /* Send a request to the server for authentication */
 
     props.onLoggedIn(username);
   };
 
-  return (
-    /*
-    <Form>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-      </label>
-      <label>
-        Password:
-        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      </label>
-      <Button type="button" onClick={handleSubmit}>Submit</Button>
-      <div>
-        New User? Register<Button type="button" onClick={() => props.onClick()}>Here</Button>
-      </div>
-    </Form>
-    */
-    _react.default.createElement(_Container.default, {
-      className: "loginContainer"
-    }, _react.default.createElement("h1", null, "Welcome!"), _react.default.createElement("form", null, _react.default.createElement(_Form.default.Group, {
-      controlId: "formBasicEmail"
-    }, _react.default.createElement(_Form.default.Label, null, "Email address"), _react.default.createElement(_Form.default.Control, {
-      type: "email",
-      placeholder: "Enter email",
-      value: username,
-      onChange: function onChange(e) {
-        return setUsername(e.target.value);
-      }
-    }), _react.default.createElement(_Form.default.Text, {
-      className: "emailShare"
-    }, "We'll never share your email with anyone else.")), _react.default.createElement(_Form.default.Group, {
-      controlId: "formBasicPassword"
-    }, _react.default.createElement(_Form.default.Label, null, "Password"), _react.default.createElement(_Form.default.Control, {
-      type: "password",
-      placeholder: "Password",
-      value: password,
-      onChange: function onChange(e) {
-        return setPassword(e.target.value);
-      }
-    })), _react.default.createElement(_Button.default, {
-      id: "loginButton",
-      onClick: handleSubmit
-    }, "Log in"), _react.default.createElement(_Form.default.Group, {
-      controlId: "newUser"
-    }, _react.default.createElement(_Form.default.Text, null, "New User? Click ", _react.default.createElement(_Button.default, {
-      id: "registerButton",
-      onClick: function onClick() {
-        return props.onClick();
-      }
-    }, " Here! ")))))
-    /*
-    <Form>
-       <Form.Group controlId="formBasicEmail">
-         <Form.Label>Email address</Form.Label>
-         <Form.Control type="email" placeholder="Enter email" />
-         <Form.text className="text-muted">
-           We'll never share your email with anyone else.
-         </Form.text>
-       </Form.Group>
-     </Form> 
-     */
-
-  );
+  return _react.default.createElement(_Container.default, {
+    className: "loginContainer"
+  }, _react.default.createElement("h1", null, "Welcome!"), _react.default.createElement(_Form.default, null, _react.default.createElement(_Form.default.Label, null, "Username: "), _react.default.createElement(_Form.default.Control, {
+    type: "text",
+    value: username,
+    onChange: function onChange(e) {
+      return setUsername(e.target.value);
+    }
+  }), _react.default.createElement(_Form.default.Label, null, "Password: "), _react.default.createElement(_Form.default.Control, {
+    type: "password",
+    value: password,
+    onChange: function onChange(e) {
+      return setPassword(e.target.value);
+    }
+  }), _react.default.createElement(_Button.default, {
+    className: "loginButton",
+    type: "button",
+    onClick: handleSubmit
+  }, "Submit"), _react.default.createElement("div", {
+    className: "button-div"
+  }, "New User? Register", _react.default.createElement(_Button.default, {
+    className: "registerButton",
+    type: "button",
+    onClick: function onClick() {
+      return props.onClick();
+    }
+  }, "Here"))))
+  /*
+      <Container className='loginContainer'>
+        <h1>Welcome!</h1>
+        <form>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" value={username} onChange={e => setUsername(e.target.value)} />
+            <Form.Text className="emailShare">
+              We'll never share your email with anyone else.
+         </Form.Text>
+          </Form.Group>
+  
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+          </Form.Group>
+          <Button id='loginButton' onClick={handleSubmit}>
+            Log in
+       </Button>
+  
+          <Form.Group controlId='newUser'>
+            <Form.Text>New User? Click <Button id='registerButton' onClick={() => props.onClick()}> Here! </Button>
+            </Form.Text>
+          </Form.Group>
+        </form>
+      </Container>
+      */
+  ;
 }
 },{"react":"../node_modules/react/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","./login-view.scss":"components/login-view/login-view.scss"}],"../node_modules/react-bootstrap/esm/divWithClassName.js":[function(require,module,exports) {
 "use strict";
@@ -32690,10 +32683,15 @@ var MovieCard = /*#__PURE__*/function (_React$Component) {
           with: '16rem'
         }
       }, _react.default.createElement(_Card.default.Img, {
+        className: "card-img",
         variant: "top",
         src: movie.ImagePath
-      }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, movie.Title), _react.default.createElement(_Card.default.Text, null, movie.Description), _react.default.createElement(_Button.default, {
-        className: "open-card",
+      }), _react.default.createElement(_Card.default.Body, {
+        className: "card-body"
+      }, _react.default.createElement(_Card.default.Title, null, movie.Title), _react.default.createElement(_Card.default.Text, {
+        className: "card-text"
+      }, movie.Description), _react.default.createElement(_Button.default, {
+        className: "open-card_button",
         onClick: function onClick() {
           return _onClick(movie);
         },
@@ -32714,7 +32712,12 @@ MovieCard.propTypes = {
   }).isRequired,
   onClick: _propTypes.default.func.isRequired
 };
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","./movie-card.scss":"components/movie-card/movie-card.scss"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../../../.npm/_npx/17651/lib/node_modules/parcel/src/builtins/css-loader.js"}],"components/movie-view/movie-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32724,9 +32727,15 @@ exports.MovieView = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
+
+require("./movie-view.scss");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -32779,26 +32788,26 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
         className: "movie-description"
       }, _react.default.createElement("span", {
         className: "label"
-      }, "Description:"), _react.default.createElement("span", {
+      }, "Description: "), _react.default.createElement("span", {
         className: "value"
       }, movie.Description)), _react.default.createElement("div", {
         className: "movie-genre"
       }, _react.default.createElement("span", {
         className: "label"
-      }, "Genre:"), _react.default.createElement("span", {
+      }, "Genre: "), _react.default.createElement("span", {
         className: "value"
       }, movie.Genre.Name)), _react.default.createElement("div", {
         className: "movie-director"
       }, _react.default.createElement("span", {
         className: "label"
-      }, "Director:"), _react.default.createElement("span", {
+      }, "Director: "), _react.default.createElement("span", {
         className: "value"
-      }, movie.Director.Name)), _react.default.createElement(Button, {
+      }, movie.Director.Name)), _react.default.createElement(_Button.default, _defineProperty({
+        className: "back-button",
         onClick: function onClick() {
           return _onClick();
-        },
-        className: "back-button"
-      }, "Back"));
+        }
+      }, "className", "back-button"), "Back"));
     }
   }]);
 
@@ -32806,7 +32815,7 @@ var MovieView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.MovieView = MovieView;
-},{"react":"../node_modules/react/index.js"}],"components/registration-view/registration-view.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","./movie-view.scss":"components/movie-view/movie-view.scss"}],"components/registration-view/registration-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32847,32 +32856,43 @@ function RegistrationView(props) {
       password = _useState4[0],
       setPassword = _useState4[1];
 
-  var handleSubmit = function handleSubmit() {
-    console.log(username, password);
+  var _useState5 = (0, _react.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      email = _useState6[0],
+      setEmail = _useState6[1];
+
+  var _useState7 = (0, _react.useState)(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      birthday = _useState8[0],
+      setBirthday = _useState8[1];
+
+  var handleSubmit = function handleSubmit(e) {
+    e.preventDefault();
+    console.log(username, password, email, birthday);
     /* Send a request to the server for authentication */
 
-    props.onLoggedIn(username);
+    props.onSignedIn(username);
   };
 
   return _react.default.createElement(_Container.default, {
     className: "loginContainer"
   }, _react.default.createElement("h1", null, "Creare a new account!"), _react.default.createElement("form", null, _react.default.createElement(_Form.default.Group, {
-    controlId: "formBasicPassword"
+    controlId: "formBasicUsename"
   }, _react.default.createElement(_Form.default.Label, null, "Username"), _react.default.createElement(_Form.default.Control, {
     type: "text",
     placeholder: "Username",
-    value: password,
+    value: username,
     onChange: function onChange(e) {
-      return setPassword(e.target.value);
+      return setUsername(e.target.value);
     }
   })), _react.default.createElement(_Form.default.Group, {
     controlId: "formBasicEmail"
   }, _react.default.createElement(_Form.default.Label, null, "Email address"), _react.default.createElement(_Form.default.Control, {
     type: "email",
     placeholder: "Enter email",
-    value: username,
+    value: email,
     onChange: function onChange(e) {
-      return setUsername(e.target.value);
+      return setEmail(e.target.value);
     }
   })), _react.default.createElement(_Form.default.Group, {
     controlId: "formBasicPassword"
@@ -32884,16 +32904,16 @@ function RegistrationView(props) {
       return setPassword(e.target.value);
     }
   })), _react.default.createElement(_Form.default.Group, {
-    controlId: "formBasicPassword"
+    controlId: "formBasicBirthday"
   }, _react.default.createElement(_Form.default.Label, null, "Birthday"), _react.default.createElement(_Form.default.Control, {
     type: "date",
     placeholder: "Birthday",
-    value: password,
+    value: birthday,
     onChange: function onChange(e) {
-      return setPassword(e.target.value);
+      return setBirthday(e.target.value);
     }
   })), _react.default.createElement(_Button.default, {
-    id: "loginButton",
+    className: "loginButton",
     onClick: handleSubmit
   }, "Submit")));
 }
@@ -32940,7 +32960,12 @@ Row.displayName = 'Row';
 Row.defaultProps = defaultProps;
 var _default = Row;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js"}],"components/main-view/main-view.scss":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../../../../../../.npm/_npx/17651/lib/node_modules/parcel/src/builtins/css-loader.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32966,6 +32991,8 @@ var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
 
 var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
 
+require("./main-view.scss");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -32986,7 +33013,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-//import './main-view.scss';
 var MainView = /*#__PURE__*/function (_React$Component) {
   _inherits(MainView, _React$Component);
 
@@ -33003,7 +33029,8 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       movies: null,
       selectedMovie: null,
       user: null,
-      register: false
+      register: false,
+      registred: null
     };
     return _this;
   } // One of the "hooks" available in a React Component
@@ -33045,6 +33072,13 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "onSignedIn",
+    value: function onSignedIn(user) {
+      this.setState({
+        registred: user
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -33055,9 +33089,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           movies = _this$state.movies,
           selectedMovie = _this$state.selectedMovie,
           user = _this$state.user,
-          register = _this$state.register; //if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-      //if (register) return <RegistrationView onClick={() => this.register(true)} />
-
+          register = _this$state.register;
       if (!user && register === false) return _react.default.createElement(_loginView.LoginView, {
         onClick: function onClick() {
           return _this3.register();
@@ -33067,9 +33099,6 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         }
       });
       if (register) return _react.default.createElement(_registrationView.RegistrationView, {
-        onClick: function onClick() {
-          return _this3.alreadyMember();
-        },
         onSignedIn: function onSignedIn(user) {
           return _this3.onSignedIn(user);
         }
@@ -33101,7 +33130,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
 }(_react.default.Component);
 
 exports.MainView = MainView;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../login-view/login-view":"components/login-view/login-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js"}],"index.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../login-view/login-view":"components/login-view/login-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../registration-view/registration-view":"components/registration-view/registration-view.jsx","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","./main-view.scss":"components/main-view/main-view.scss"}],"index.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);

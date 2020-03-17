@@ -6,11 +6,14 @@ import Container from 'react-bootstrap/Container'
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [birthday, setBirthday] = useState('');
 
-  const handleSubmit = () => {
-    console.log(username, password);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(username, password, email, birthday);
     /* Send a request to the server for authentication */
-    props.onLoggedIn(username)
+    props.onSignedIn(username)
   };
 
 
@@ -19,23 +22,23 @@ export function RegistrationView(props) {
     <Container className='loginContainer'>
       <h1>Creare a new account!</h1>
       <form>
-        <Form.Group controlId="formBasicPassword">
+        <Form.Group controlId="formBasicUsename">
           <Form.Label>Username</Form.Label>
-          <Form.Control type="text" placeholder="Username" value={password} onChange={e => setPassword(e.target.value)} />
+          <Form.Control type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
         </Form.Group>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" value={username} onChange={e => setUsername(e.target.value)} />
+          <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)} />
         </Form.Group>
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
         </Form.Group>
-        <Form.Group controlId="formBasicPassword">
+        <Form.Group controlId="formBasicBirthday">
           <Form.Label>Birthday</Form.Label>
-          <Form.Control type="date" placeholder="Birthday" value={password} onChange={e => setPassword(e.target.value)} />
+          <Form.Control type="date" placeholder="Birthday" value={birthday} onChange={e => setBirthday(e.target.value)} />
         </Form.Group>
-        <Button id='loginButton' onClick={handleSubmit}>
+        <Button className='loginButton' onClick={handleSubmit}>
           Submit
      </Button>
       </form>
