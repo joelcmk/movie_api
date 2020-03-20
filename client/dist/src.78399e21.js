@@ -32388,7 +32388,7 @@ function LoginView(props) {
     e.preventDefault();
     /* Send a request to the server for authentication */
 
-    _axios.default.post('https://my-flix-2020.herokuapp.com/login', {
+    _axios.default.post('https://my-flix-evagrean.herokuapp.com/login', {
       Username: username,
       Password: password
     }).then(function (response) {
@@ -33080,7 +33080,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     value: function getMovies(token) {
       var _this2 = this;
 
-      _axios.default.get('https://my-flix-2020.herokuapp.com/movies', {
+      _axios.default.get('https://my-flix-app0.herokuapp.com/movies', {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
