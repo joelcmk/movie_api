@@ -13,7 +13,7 @@ const cors = require('cors');
 
 
 //mongoose.connect('mongodb://localhost:27017/movies', {useNewUrlParser: true});
-mongoose.connect('mongodb+srv://myDBadmin:pWTbPxTFC6Lr3Mbk@mydb-vyikg.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://myFlixDBadmin:Newyork_12@cluster0-3ykus.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true });
 
 app.use(bodyParser.json());
 

@@ -32388,7 +32388,7 @@ function LoginView(props) {
     e.preventDefault();
     /* Send a request to the server for authentication */
 
-    _axios.default.post('https://my-flix-2020.herokuapp.com/login', {
+    _axios.default.post('https://my-flix-evagrean.herokuapp.com/login', {
       Username: username,
       Password: password
     }).then(function (response) {
