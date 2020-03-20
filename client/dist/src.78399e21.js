@@ -32388,7 +32388,7 @@ function LoginView(props) {
     e.preventDefault();
     /* Send a request to the server for authentication */
 
-    _axios.default.post('https://my-flix-evagrea.herokuapp.com/login', {
+    _axios.default.post('https://my-flix-evagrean.herokuapp.com/login', {
       Username: username,
       Password: password
     }).then(function (response) {
@@ -33068,9 +33068,31 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "onLoggedIn",
-    value: function onLoggedIn(user) {
+    value: function onLoggedIn(authData) {
+      console.log(authData);
       this.setState({
-        user: user
+        user: authData.user.Username
+      });
+      localStorage.setItem('token', authData.token);
+      localStorage.setItem('user', authData.user.Username);
+      this.getMovies(authData.token);
+    }
+  }, {
+    key: "getMovies",
+    value: function getMovies(token) {
+      var _this3 = this;
+
+      _axios.default.get('https://my-flix-2020.herokuapp.com/movies', {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        //Assign the result to the state
+        _this3.setState({
+          movies: response.data
+        });
+      }).catch(function (error) {
+        console.log(error);
       });
     }
   }, {
@@ -33090,7 +33112,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       // If the state isn't initialized, this will throw on runtime
       // before the data is initially loaded
@@ -33101,15 +33123,15 @@ var MainView = /*#__PURE__*/function (_React$Component) {
           register = _this$state.register;
       if (!user && register === false) return _react.default.createElement(_loginView.LoginView, {
         onClick: function onClick() {
-          return _this3.register();
+          return _this4.register();
         },
         onLoggedIn: function onLoggedIn(user) {
-          return _this3.onLoggedIn(user);
+          return _this4.onLoggedIn(user);
         }
       });
       if (register) return _react.default.createElement(_registrationView.RegistrationView, {
         onSignedIn: function onSignedIn(user) {
-          return _this3.onSignedIn(user);
+          return _this4.onSignedIn(user);
         }
       }); // Before the movies have been loaded
 
@@ -33121,14 +33143,14 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       }, _react.default.createElement(_Container.default, null, _react.default.createElement(_Row.default, null, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
         movie: selectedMovie,
         onClick: function onClick() {
-          return _this3.onMovieClick(null);
+          return _this4.onMovieClick(null);
         }
       }) : movies.map(function (movie) {
         return _react.default.createElement(_Col.default, null, _react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
           movie: movie,
           onClick: function onClick(movie) {
-            return _this3.onMovieClick(movie);
+            return _this4.onMovieClick(movie);
           }
         }));
       }))));
