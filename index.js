@@ -14,7 +14,7 @@ const app = express();
 
 // Allowing Mongoose to connect to online database on MongoDB Atlas
 mongoose.connect(
-  'mongodb+srv://myDBadmin:pWTbPxTFC6Lr3Mbk@mydb-vyikg.mongodb.net/myFlixDB?retryWrites=true&w=majority',
+  'mongodb+srv://myFlixDBadmin:Newyork_12@cluster0-3ykus.mongodb.net/myFlixDB?retryWrites=true&w=majority',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
