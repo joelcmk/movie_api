@@ -22,7 +22,7 @@ var auth = require('./auth')(app);
 
 app.use(cors());
 
-var allowedOrigins = ['*'];
+var allowedOrigins = ['http://localhost:1234'];
 
 app.use(cors({
   origin: function (origin, callback) {
