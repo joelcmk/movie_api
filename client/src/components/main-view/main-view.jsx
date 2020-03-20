@@ -30,16 +30,13 @@ export class MainView extends React.Component {
 
   // One of the "hooks" available in a React Component
   componentDidMount() {
-    axios.get('https://my-flix-2020.herokuapp.com/movies')
-      .then(response => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
       });
+      this.getMovies(accessToken);
+    }
   }
 
   onMovieClick(movie) {
@@ -49,7 +46,7 @@ export class MainView extends React.Component {
   }
 
   onLoggedIn(authData) {
-    console.log(authData)
+    console.log(authData);
     this.setState({
       user: authData.user.Username
     });
@@ -60,18 +57,18 @@ export class MainView extends React.Component {
   }
 
   getMovies(token) {
-    axios.get('https://my-flix-2020.herokuapp.com/movies', {
+    axios.get('https://my-flix-evagrean.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
-        //Assign the result to the state
+        // Assign the result to the state
         this.setState({
           movies: response.data
         });
       })
       .catch(function (error) {
-        console.log(error)
-      })
+        console.log(error);
+      });
   }
 
   register() {
