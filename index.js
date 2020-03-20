@@ -15,6 +15,12 @@ const cors = require('cors');
 //mongoose.connect('mongodb://localhost:27017/movies', {useNewUrlParser: true});
 mongoose.connect('mongodb+srv://myFlixDBadmin:Newyork_12@cluster0-3ykus.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
 
+app.use(express.static('public'));
+app.use('/client', express.static(path.join(__dirname, 'dist')));
+app.get("/client/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
+
 app.use(bodyParser.json());
 
 var auth = require('./auth')(app);
@@ -215,8 +221,6 @@ app.post('/users/:Username/Movies/:MovieID', passport.authenticate('jwt', { sess
       }
     })
 });
-
-app.use(express.static('public'));
 
 // Listen for requests
 var port = process.env.PORT || 3000;
