@@ -13,7 +13,7 @@ const cors = require('cors');
 
 
 //mongoose.connect('mongodb://localhost:27017/movies', {useNewUrlParser: true});
-mongoose.connect('mongodb+srv://myFlixDBadmin:Newyork_12@cluster0-3ykus.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true });
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 app.use(bodyParser.json());
 
