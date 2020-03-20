@@ -33080,7 +33080,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
     value: function getMovies(token) {
       var _this2 = this;
 
-      _axios.default.get('https://my-flix-evagrean.herokuapp.com/movies', {
+      _axios.default.get('https://my-flix-2020.herokuapp.com/movies', {
         headers: {
           Authorization: "Bearer ".concat(token)
         }
