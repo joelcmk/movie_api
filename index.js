@@ -22,7 +22,7 @@ var auth = require('./auth')(app);
 // Specifies that app uses CORS - default: allows requests from all origins
 app.use(cors());
 
-
+/*
 // Allowing only certain origins to be given access
 var allowedOrigins = ['http://localhost:8080', 'http://localhost:1234'];
 
@@ -41,7 +41,7 @@ app.use(
     }
   })
 );
-
+*/
 
 // Gets the list of data about all the movies
 app.get("/movies", passport.authenticate('jwt', { session: false }), function (req, res) {
