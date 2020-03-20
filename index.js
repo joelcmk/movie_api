@@ -9,6 +9,7 @@ const Users = Models.User;
 const passport = require('passport');
 require('./passport');
 const { check, validationResult } = require('express-validator');
+const cors = require('cors');
 
 
 //mongoose.connect('mongodb://localhost:27017/movies', {useNewUrlParser: true});
@@ -18,10 +19,10 @@ app.use(bodyParser.json());
 
 var auth = require('./auth')(app);
 
-const cors = require('cors');
+
 app.use(cors());
 
-var allowedOrigins = ['*', 'http://localhost:1234'];
+var allowedOrigins = ['http://localhost:8080', 'http://localhost:1234',];
 
 app.use(cors({
   origin: function (origin, callback) {
