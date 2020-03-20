@@ -1,27 +1,37 @@
-const express = require('express'),
-  app = express(),
-  bodyParser = require('body-parser'),
-  mongoose = require('mongoose'),
-  Models = require('./models.js');
-
-const Movies = Models.Movie;
-const Users = Models.User;
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const uuid = require('uuid');
+const mongoose = require('mongoose');
+const Models = require('./models.js');
 const passport = require('passport');
 require('./passport');
-const { check, validationResult } = require('express-validator');
 const cors = require('cors');
+const { check, validationResult } = require('express-validator');
+
+// Initializing app variable
+const app = express();
+
+// Allowing Mongoose to connect to online database on MongoDB Atlas
+mongoose.connect(
+  'mongodb+srv://myDBadmin:pWTbPxTFC6Lr3Mbk@mydb-vyikg.mongodb.net/myFlixDB?retryWrites=true&w=majority',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+);
+
+// Allowing Mongoose to connect to local database
+// mongoose.connect('mongodb://localhost:27017/myFlixDB', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// });
 
 
-//mongoose.connect('mongodb://localhost:27017/movies', {useNewUrlParser: true});
-mongoose.connect('mongodb+srv://myFlixDBadmin:Newyork_12@cluster0-3ykus.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
-
-app.use(bodyParser.json());
-
-var auth = require('./auth')(app);
+mongoose.set('useFindAndModify', false);
 
 // Specifies that app uses CORS - default: allows requests from all origins
 app.use(cors());
-
 
 // Allowing only certain origins to be given access
 var allowedOrigins = ['http://localhost:8080', 'http://localhost:1234'];
@@ -41,6 +51,28 @@ app.use(
     }
   })
 );
+
+// Morgan middleware library used to log all requests to the terminal
+app.use(morgan('common'));
+
+// Body-parser middleware used to read the body of HTTP requests, expected in JSON format
+app.use(bodyParser.json());
+
+// Authentication middleware. (app) argument ensures that Express is available in auth.js file
+const auth = require('./auth')(app);
+
+// Serve static file(s) in public folder
+app.use(express.static('public'));
+
+// error-handling middleware function that logs application-level errors to terminal
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('An error occured');
+});
+
+// Requiring the Mongoose models defined in models.js
+const Movies = Models.Movie;
+const Users = Models.User;
 
 
 // Gets the list of data about all the movies
