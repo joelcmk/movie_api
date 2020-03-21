@@ -1,30 +1,43 @@
 const express = require('express'),
   app = express(),
-  bodyParser = require('body-parser'),
+  morgan = require('morgan')
+bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
   Models = require('./models.js');
 
 const Movies = Models.Movie;
 const Users = Models.User;
 const passport = require('passport');
-require('./passport');
-const { check, validationResult } = require('express-validator');
 const cors = require('cors');
+const { check, validationResult } = require('express-validator');
+require('./passport');
 
 
+
+mongoose.set('useFindAndModify', false);
 //mongoose.connect('mongodb://localhost:27017/movies', {useNewUrlParser: true});
-mongoose.connect('mongodb+srv://myFlixDBadmin:Newyork_12@cluster0-3ykus.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://myFlixDBadmin:Newyork_12@cluster0-3ykus.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true });
 
-app.use(bodyParser.json());
 
-var auth = require('./auth')(app);
 
+//invoke middleware functions
 app.use(express.static('public'));
-
-// Specifies that app uses CORS - default: allows requests from all origins
+app.use(morgan('common'));
+app.use(bodyParser.json());
 app.use(cors());
 
 
+var auth = require('./auth')(app);
+
+//Error handling middleware functions
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+  next();
+});
+
+
+/*
 // Allowing only certain origins to be given access
 var allowedOrigins = ['http://localhost:8080', 'http://localhost:1234'];
 
@@ -43,17 +56,11 @@ app.use(
     }
   })
 );
-
+*/
 
 // Gets the list of data about all the movies
-app.get("/movies", passport.authenticate('jwt', { session: false }), function (req, res) {
-  Movies.find()
-    .then(function (movies) {
-      res.status(201).json(movies);
-    }).catch(function (error) {
-      console.error(error);
-      res.status(500).send("Error: " + error);
-    });
+app.get("/Movies", passport.authenticate('jwt', { session: false }), function (req, res) {
+  Movies.find().then(Movies => res.json(Movies));
 });
 
 //Gets the data about a movie, by name
