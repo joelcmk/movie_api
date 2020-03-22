@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -83,6 +85,14 @@ export class MainView extends React.Component {
     })
   }
 
+  onLogOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.setState({
+      user: null
+    })
+  }
+
 
   render() {
     // If the state isn't initialized, this will throw on runtime
@@ -97,20 +107,17 @@ export class MainView extends React.Component {
     if (!movies) return <div className="main-view" />;
 
     return (
-      <div className="main-view">
-        <Container>
-          <Row>
-            {selectedMovie
-              ? <MovieView movie={selectedMovie} onClick={() => this.onMovieClick(null)} />
-              : movies.map(movie => (
-                <Col>
-                  <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
-                </Col>
-              ))
-            }
-          </Row>
-        </Container>
-      </div>
+      <Router>
+        <div className="main-view">
+          <button onClick={() => this.onLogOut()}>Sign Out</button>
+          <Container>
+            <Row>
+              <Route exact path="/" render={() => movies.map(m => <MovieCard key={m._id} movie={m} />)} />
+              <Route path="/movies/:movieId" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieId)} />} />
+            </Row>
+          </Container>
+        </div>
+      </Router>
     );
   }
 }

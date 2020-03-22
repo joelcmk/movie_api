@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 
+import { Link } from 'react-router-dom';
+
 import './movie-card.scss';
 
 export class MovieCard extends React.Component {
@@ -17,7 +19,9 @@ export class MovieCard extends React.Component {
           <Card.Body className="card-body">
             <Card.Title>{movie.Title}</Card.Title>
             <Card.Text className="card-text">{movie.Description}</Card.Text>
-            <Button className="open-card_button" onClick={() => onClick(movie)} variant="link">Open</Button>
+            <Link to={`/movies/${movie._id}`}>
+              <Button className="open-card_button" variant="link">Open</Button>
+            </Link>
           </Card.Body>
         </Card >
       </Container>

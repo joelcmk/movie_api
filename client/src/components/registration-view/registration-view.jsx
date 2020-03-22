@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container'
+import Axios from 'axios';
 
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
@@ -9,12 +10,14 @@ export function RegistrationView(props) {
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
     console.log(username, password, email, birthday);
     /* Send a request to the server for authentication */
+
     props.onSignedIn(username)
   };
+
 
 
   return (
@@ -38,7 +41,7 @@ export function RegistrationView(props) {
           <Form.Label>Birthday</Form.Label>
           <Form.Control type="date" placeholder="Birthday" value={birthday} onChange={e => setBirthday(e.target.value)} />
         </Form.Group>
-        <Button className='loginButton' onClick={handleSubmit}>
+        <Button className='loginButton' onClick={handleRegister}>
           Submit
      </Button>
       </form>
