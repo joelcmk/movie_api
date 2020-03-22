@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container'
-import Axios from 'axios';
+import axios from 'axios';
 
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
@@ -12,10 +12,21 @@ export function RegistrationView(props) {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log(username, password, email, birthday);
     /* Send a request to the server for authentication */
-
-    props.onSignedIn(username)
+    axios.post('https://my-flix-app0.herokuapp.com/users', {
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday
+    })
+      .then(response => {
+        const data = response.data;
+        console.log(data);
+        window.open('/', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
+      })
+      .catch(e => {
+        console.log('error registering the user')
+      });
   };
 
 
@@ -43,7 +54,7 @@ export function RegistrationView(props) {
         </Form.Group>
         <Button className='loginButton' onClick={handleRegister}>
           Submit
-     </Button>
+        </Button>
       </form>
     </Container>
   );

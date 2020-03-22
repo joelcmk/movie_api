@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
+import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-
 import './login-view.scss';
-import axios from 'axios';
+
 
 export function LoginView(props) {
   const [username, setUsername] = useState('');
@@ -36,11 +40,16 @@ export function LoginView(props) {
         <Form.Label>Password: </Form.Label>
         <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
         <Button className="loginButton" type="button" onClick={handleSubmit}>Submit</Button>
+
         <div className="button-div">
-          New User? Register<Button className="registerButton" type="button" onClick={() => props.onClick()}>Here</Button>
+          New User? Register
+          <Link to={`/register`}>
+            <Button className="registerButton" type="button">Here</Button>
+          </Link>
         </div>
       </Form>
     </Container>
+
     /*
         <Container className='loginContainer'>
           <h1>Welcome!</h1>
