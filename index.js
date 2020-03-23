@@ -101,6 +101,18 @@ app.get("/users", function (req, res) {
   Users.find().then(movies => res.json(movies));
 });
 
+//Get user profile by username
+app.get('/users/:Username', passport.authenticate('jwt', { session: false }), function (req, res) {
+  Users.findOne({ Username: req.params.Username })
+    .then(function (user) {
+      res.json(user)
+    })
+    .catch(function (err) {
+      console.error(err);
+      res.status(500).send("Error:" + err);
+    });
+});
+
 //Add new users
 app.post('/users',
   [check('Username', 'Username is required').isLength({ min: 4 }),
