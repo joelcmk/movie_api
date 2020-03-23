@@ -9,11 +9,14 @@ import { MovieView } from '../movie-view/movie-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
+import { ProfileView } from '../profile-view/profile-view';
 
 
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
+
+import { Link } from 'react-router-dom';
 
 import './main-view.scss';
 
@@ -97,8 +100,10 @@ export class MainView extends React.Component {
       <Router>
         <Container>
           <div className="nav-bar">
+            <Link to={`/users/${user}`}>
+              <Button>User</Button>
+            </Link>
             <Button onClick={() => this.onLogOut()}>Sign Out</Button>
-
           </div>
           <Row>
             <Route exact path="/" render={() => {
@@ -118,6 +123,7 @@ export class MainView extends React.Component {
               return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} />
             }
             } />
+            <Route path="/users/:Username" render={() => <ProfileView />} />
           </Row>
         </Container>
       </Router>
