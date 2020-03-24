@@ -37,7 +37,7 @@ export class ProfileView extends React.Component {
       .then(response => {
         this.setState({
           userData: response.data,
-          username: response.data.Usename,
+          username: response.data.Username,
           password: response.data.Password,
           email: response.data.Email,
           birthday: response.data.Birthday,
@@ -67,17 +67,65 @@ export class ProfileView extends React.Component {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  deleteProfile() {
+    axios.delete(`https://my-flix-app0.herokuapp.com/users/${localStorage.getItem('user')}`,
+      {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+      .then(res => {
+        alert('Do you really want to delete your account?')
+      })
+      .then(res => {
+        alert('Account was succesfully deleted')
+      })
+      .then(res => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user')
+
+        this.setState({
+          user: null
+        })
+        window.open('/', '_self');
+      })
+      .catch(e => {
+        alert('Account could not be deleted ' + e)
+      })
+  }
+
   render() {
 
     const { username, email, birthday, favoriteMovies } = this.state;
 
     return (
       <Card>
-        <Card.Title>My Profile</Card.Title>
-        <Card.Text>
-          <span>Username: {username}</span>
-        </Card.Text>
-      </Card>
+        <Card.Body>
+          <Card.Title>My Profile</Card.Title>
+          <Card.Text>
+            <div>
+              <span>Username: {username}</span>
+            </div>
+            <div>
+              <span>Email: {email}</span>
+            </div>
+            <div>
+              <span>Password: ********</span>
+            </div>
+            <div>
+              <span>Birthday: {birthday}</span>
+            </div>
+            <div className="favorite-movies">
+              <span>favoriteMovies</span>
+              {favoriteMovies}
+            </div>
+          </Card.Text>
+          <div>
+            <Link to={`/update/${username}`}>
+              <Button>Update my profile</Button>
+            </Link>
+            <Button onClick={() => this.deleteProfile()}>Delete my profile</Button>
+          </div>
+        </Card.Body>
+      </Card >
     )
   }
 }

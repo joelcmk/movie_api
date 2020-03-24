@@ -10,6 +10,7 @@ import { RegistrationView } from '../registration-view/registration-view';
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
 import { ProfileView } from '../profile-view/profile-view';
+import { ProfileUpdate } from '../profile-view/profile-update'
 
 
 import Container from 'react-bootstrap/Container';
@@ -124,6 +125,7 @@ export class MainView extends React.Component {
             }
             } />
             <Route path="/users/:Username" render={() => <ProfileView />} />
+            <Route exact path="/update/:Username" render={() => <ProfileUpdate user={user} />} />
           </Row>
         </Container>
       </Router>
