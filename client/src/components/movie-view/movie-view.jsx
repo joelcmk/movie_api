@@ -1,9 +1,10 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button'
 
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import './movie-view.scss'
+import './movie-view.scss';
 
 export class MovieView extends React.Component {
 
@@ -13,6 +14,23 @@ export class MovieView extends React.Component {
     this.state = {};
   }
 
+  addToFavorites(e) {
+    const { movie } = this.props;
+    e.preventDefault();
+    axios.post(`https://my-flix-app0.herokuapp.com/users/${localStorage.getItem('user')}/Movies/${movie._id}`,
+      {
+        username: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      })
+      .then(res => {
+        alert(`${movie.Title} successfully added to your favorites`);
+      })
+      .then(res => {
+        document.location.reload(true);
+      })
+      .catch(error => {
+        alert(`${movie.Title} not added to your favorites` + error)
+      });
+  }
 
   render() {
     const { movie, onClick } = this.props;
@@ -44,7 +62,14 @@ export class MovieView extends React.Component {
         <Link to={`/`}>
           <Button className="back-button">Back</Button>
         </Link>
+        <Button onClick={e => this.addToFavorites(e)}>
+          <span>
+            <i className="material-icons heart mr-3">favorite</i>
+            Add to my favorites
+            </span>
+        </Button>
       </div >
+
     );
   }
 }
