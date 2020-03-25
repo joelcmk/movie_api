@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-import { Link } from 'react-router-dom';
+import './profile-view.scss'
 
 export function ProfileUpdate(props) {
   const { user } = props;
@@ -15,17 +14,17 @@ export function ProfileUpdate(props) {
   const [username, updateUsername] = useState('');
   const [password, updatePassword] = useState('');
   const [email, updateEmail] = useState('');
-  const [birthDay, updateBirthday] = useState('');
+  const [birthday, updateBirthday] = useState('');
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    axios.put(`https://my-flix-app0.herokuapp.com/user/${user}`, {
+    axios.put(`https://my-flix-app0.herokuapp.com/users/${user}`, {
       Username: username,
       Password: password,
-      Birthday: Birthday,
+      Birthday: birthday,
       Email: email
     }, {
-      headers: { Autorization: `Bearer ${localStorage.getItem('token')}` }
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => {
         const data = res.data;
@@ -36,7 +35,7 @@ export function ProfileUpdate(props) {
   }
 
   return (
-    <Container className="container update-container border-0 mt-0">
+    <Container className="container-update">
       <Form className="update-form">
         <Form.Group controlId="formBasicUsername">
           <Form.Label>Username</Form.Label>
@@ -54,8 +53,8 @@ export function ProfileUpdate(props) {
           <Form.Label>Date of Birth</Form.Label>
           <Form.Control required type="date" placeholder="Update your birthday or repeat original" onChange={e => updateBirthday(e.target.value)} />
         </Form.Group>
-        <Row className="justify-content-end">
-          <Button className="update-btn mr-3" variant="primary" type="submit" onClick={handleUpdate}>Update</Button>
+        <Row className="justify-content-center">
+          <Button className="update-btn mr-3 profile-btn" variant="primary" type="submit" onClick={handleUpdate}>Update</Button>
         </Row>
       </Form>
     </Container>

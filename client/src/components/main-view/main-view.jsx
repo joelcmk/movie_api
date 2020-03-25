@@ -99,13 +99,20 @@ export class MainView extends React.Component {
 
     return (
       <Router>
+        <nav class="navbar navbar-expand-sm navbar-dark">
+          <a routerLink="/" class="navbar-brand" href="/">MyFlix</a>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <Link to={`/users/${user}`}>
+                <a class="nav-link">{user}</a>
+              </Link>
+            </li>
+            <li class="nav-item">
+              <Button className="nav-btn" onClick={() => this.onLogOut()}>Sign Out</Button>
+            </li>
+          </ul>
+        </nav>
         <Container>
-          <div className="nav-bar">
-            <Link to={`/users/${user}`}>
-              <Button>User</Button>
-            </Link>
-            <Button onClick={() => this.onLogOut()}>Sign Out</Button>
-          </div>
           <Row>
             <Route exact path="/" render={() => {
               if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
@@ -128,7 +135,7 @@ export class MainView extends React.Component {
             <Route exact path="/update/:Username" render={() => <ProfileUpdate user={user} />} />
           </Row>
         </Container>
-      </Router>
+      </Router >
     );
   }
 }

@@ -2,8 +2,9 @@ import React from 'react';
 import axios from 'axios';
 
 import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
+
+import './profile-view.scss'
 
 import { Link } from 'react-router-dom';
 
@@ -97,9 +98,9 @@ export class ProfileView extends React.Component {
     const { username, email, birthday, favoriteMovies } = this.state;
 
     return (
-      <Card>
-        <Card.Body>
-          <Card.Title>My Profile</Card.Title>
+      <Card className="profile-card">
+        <Card.Body className="profile-card2">
+          <Card.Title className="title">My Profile</Card.Title>
           <Card.Text>
             <div>
               <span>Username: {username}</span>
@@ -118,11 +119,11 @@ export class ProfileView extends React.Component {
               {favoriteMovies}
             </div>
           </Card.Text>
-          <div>
+          <div className="profile-btns">
             <Link to={`/update/${username}`}>
-              <Button>Update my profile</Button>
+              <Button className="profile-btn">Update my profile</Button>
             </Link>
-            <Button onClick={() => this.deleteProfile()}>Delete my profile</Button>
+            <Button className="profile-btn" onClick={() => this.deleteProfile()}>Delete my profile</Button>
           </div>
         </Card.Body>
       </Card >
