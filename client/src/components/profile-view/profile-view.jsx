@@ -10,17 +10,19 @@ import './profile-view.scss';
 
 import { Link } from 'react-router-dom';
 
+
 export class ProfileView extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       username: null,
       password: null,
       email: null,
       birthday: null,
       userData: null,
-      favouriteMovies: []
+      favouriteMovies: [],
+      movies: []
     };
   }
 
@@ -52,17 +54,19 @@ export class ProfileView extends React.Component {
       });
   }
 
-  deleteMovieFromFavs(event, favoriteMovie) {
-    event.preventDefault();
-    console.log(favoriteMovie);
-    axios.delete(`https://my-flix-1098.herokuapp.com/users/${localStorage.getItem('user')}/Favourites/${favoriteMovie}`, {
+  deleteFavorite(movieId) {
+    axios.delete(`https://my-flix-app0.herokuapp.com/users/${localStorage.getItem('user')}/Movies/${movieId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
-      .then(response => {
-        this.getUser(localStorage.getItem('token'));
+      .then(res => {
+        document.location.reload(true);
       })
-      .catch(event => {
-        alert('Oops... something went wrong...');
+      .then(res => {
+        alert('Movie successfully deleted from favorites');
+      })
+
+      .catch(e => {
+        alert('Movie could not be deleted from favorites ' + e)
       });
   }
 
@@ -98,6 +102,9 @@ export class ProfileView extends React.Component {
   render() {
 
     const { username, email, birthday, favouriteMovies } = this.state;
+    const { movies } = this.props;
+
+    const favoritesList = movies.filter(movie => favouriteMovies.includes(movie._id));
 
     return (
       <Card className="profile-card">
@@ -116,6 +123,9 @@ export class ProfileView extends React.Component {
             <div>
               <span>Birthday: {birthday}</span>
             </div>
+            <div>
+
+            </div>
           </Card.Text>
           <div className="profile-btns">
             <Link to={`/update/${username}`}>
@@ -124,32 +134,29 @@ export class ProfileView extends React.Component {
             <Button className="profile-btn" onClick={() => this.deleteProfile()}>Delete my profile</Button>
           </div>
         </Card.Body>
-        <div>
-          <ListGroup.Item>Favourite Movies:
+        <ListGroup.Item className="favorite-card">Favorite Movies:
              <div>
-              {favouriteMovies.length === 0 &&
-                <div className="value">No Favourite Movies have been added</div>
-              }
-              {favouriteMovies.length > 0 &&
-                <ul>
-                  {favouriteMovies.map(favoriteMovie =>
-                    (<li key={favoriteMovie}>
-                      <p className="favouriteMovies">
-                        {JSON.parse(localStorage.getItem('movies')).find(movie => movie._id === favoriteMovie).Title}
-                      </p>
-                      <Link to={`/movies/${favoriteMovie}`}>
-                        <Button size="sm" variant="info">Open</Button>
-                      </Link>
-                      <Button variant="secondary" size="sm" onClick={(event) => this.deleteMovieFromFavs(event, favoriteMovie)}>
-                        Delete
-                        </Button>
-                    </li>)
-                  )}
-                </ul>
-              }
-            </div>
-          </ListGroup.Item>
-        </div>
+            {favouriteMovies.length === 0 &&
+              <div className="value">No Favorite Movies have been added</div>
+            }
+            {favouriteMovies.length > 0 &&
+              <ul className="ml-0 pl-0">
+                {favoritesList.map(movie =>
+                  (
+                    <li key={movie._id} className="mb-2 ">
+                      <span className="d-flex align-items-center">
+                        <Button className="delete-btn" onClick={e => this.deleteFavorite(movie._id)}>Delete</Button>
+                        <Link to={`/movies/${movie._id}`}>
+                          <span className="link"> {movie.Title}</span>
+                        </Link>
+
+                      </span>
+                    </li>
+                  ))}
+              </ul>
+            }
+          </div>
+        </ListGroup.Item>
       </Card >
     )
   }

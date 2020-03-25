@@ -1,3 +1,6 @@
+ul {
+  list-style-type: none;
+}
 .profile-card {
   margin: 20px auto;
   background-color: #D3D0CB;
@@ -30,3 +33,20 @@
   background-color: #E7BB41;
   border: 0px;
 }
+
+//Favorite Card
+.favorite-card {
+  background-color: #44BBA4;
+}
+
+.delete-btn {
+  background-color: #393E41;
+  color: white;
+  border: 0;
+}
+
+.link {
+  color: #393E41;
+  margin-left: 15px;
+}
+

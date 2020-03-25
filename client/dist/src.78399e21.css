@@ -63,6 +63,13 @@ body {
   color: #393E41;
 }
 
+.favorite-btn {
+  color: white;
+  background-color: #393E41;
+  border: 0;
+  margin-left: 10px;
+}
+
 .movie-poster {
   width: 350px;
   display: block;
@@ -70,6 +77,10 @@ body {
   margin-right: auto;
   width: 40%;
 }
+ul {
+  list-style-type: none;
+}
+
 .profile-card {
   margin: 20px auto;
   background-color: #D3D0CB;
@@ -101,6 +112,21 @@ body {
   color: #393E41;
   background-color: #E7BB41;
   border: 0px;
+}
+
+.favorite-card {
+  background-color: #44BBA4;
+}
+
+.delete-btn {
+  background-color: #393E41;
+  color: white;
+  border: 0;
+}
+
+.link {
+  color: #393E41;
+  margin-left: 15px;
 }
 .nav-btn {
   color: #393E41;

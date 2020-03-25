@@ -22,10 +22,10 @@ import { Link } from 'react-router-dom';
 import './main-view.scss';
 
 export class MainView extends React.Component {
-  constructor() {
+  constructor(props) {
     // Call the superclass constructor
     // so React can initialize it
-    super();
+    super(props);
 
     // Initialize the state to an empty object so we can destructure it later
     this.state = {
@@ -92,7 +92,8 @@ export class MainView extends React.Component {
   render() {
     // If the state isn't initialized, this will throw on runtime
     // before the data is initially loaded
-    const { movies, selectedMovie, user, register } = this.state;
+    const { movies, user, register } = this.state;
+    //let { movies } = this.props;
 
     // Before the movies have been loaded
     if (!movies) return <div className="main-view" />;
@@ -131,7 +132,7 @@ export class MainView extends React.Component {
               return <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} />
             }
             } />
-            <Route path="/users/:Username" render={() => <ProfileView />} />
+            <Route path="/users/:Username" render={() => <ProfileView movies={movies} />} />
             <Route exact path="/update/:Username" render={() => <ProfileUpdate user={user} />} />
           </Row>
         </Container>

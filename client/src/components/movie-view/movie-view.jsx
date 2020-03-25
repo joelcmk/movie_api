@@ -34,6 +34,7 @@ export class MovieView extends React.Component {
 
   render() {
     const { movie, onClick } = this.props;
+    console.log(movie)
     if (!movie) return null;
     return (
       <div className="movie-view">
@@ -62,11 +63,8 @@ export class MovieView extends React.Component {
         <Link to={`/`}>
           <Button className="back-button">Back</Button>
         </Link>
-        <Button onClick={e => this.addToFavorites(e)}>
-          <span>
-            <i className="material-icons heart mr-3">favorite</i>
-            Add to my favorites
-            </span>
+        <Button className="favorite-btn" onClick={e => this.addToFavorites(e)}>
+          Add to my favorites
         </Button>
       </div >
 
