@@ -102,7 +102,7 @@ app.get("/users", function (req, res) {
 });
 
 //Get user profile by username
-app.get('/users/:Username', passport.authenticate('jwt', { session: false }), function (req, res) {
+app.get('/users/:Username', function (req, res) {
   Users.findOne({ Username: req.params.Username })
     .then(function (user) {
       res.json(user)

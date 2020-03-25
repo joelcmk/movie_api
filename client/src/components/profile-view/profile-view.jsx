@@ -3,8 +3,10 @@ import axios from 'axios';
 
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Container from 'react-bootstrap/Container';
 
-import './profile-view.scss'
+import './profile-view.scss';
 
 import { Link } from 'react-router-dom';
 
@@ -18,7 +20,7 @@ export class ProfileView extends React.Component {
       email: null,
       birthday: null,
       userData: null,
-      favoriteMovies: []
+      favouriteMovies: []
     };
   }
 
@@ -42,7 +44,7 @@ export class ProfileView extends React.Component {
           password: response.data.Password,
           email: response.data.Email,
           birthday: response.data.Birthday,
-          favouriteMovies: response.data.Favorites
+          favouriteMovies: response.data.Favorite
         });
       })
       .catch(function (error) {
@@ -53,14 +55,14 @@ export class ProfileView extends React.Component {
   deleteMovieFromFavs(event, favoriteMovie) {
     event.preventDefault();
     console.log(favoriteMovie);
-    axios.delete(`https://my-flix-app0.herokuapp.com/users/${localStorage.getItem('user')}/Favorites/${favoriteMovie}`, {
-      headers: { Autorization: `Bearer ${localStorage.getItem('token')}` }
+    axios.delete(`https://my-flix-1098.herokuapp.com/users/${localStorage.getItem('user')}/Favourites/${favoriteMovie}`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
       .then(response => {
         this.getUser(localStorage.getItem('token'));
       })
       .catch(event => {
-        alert('Opss... Something went wrong');
+        alert('Oops... something went wrong...');
       });
   }
 
@@ -95,7 +97,7 @@ export class ProfileView extends React.Component {
 
   render() {
 
-    const { username, email, birthday, favoriteMovies } = this.state;
+    const { username, email, birthday, favouriteMovies } = this.state;
 
     return (
       <Card className="profile-card">
@@ -114,10 +116,6 @@ export class ProfileView extends React.Component {
             <div>
               <span>Birthday: {birthday}</span>
             </div>
-            <div className="favorite-movies">
-              <span>favoriteMovies</span>
-              {favoriteMovies}
-            </div>
           </Card.Text>
           <div className="profile-btns">
             <Link to={`/update/${username}`}>
@@ -126,6 +124,32 @@ export class ProfileView extends React.Component {
             <Button className="profile-btn" onClick={() => this.deleteProfile()}>Delete my profile</Button>
           </div>
         </Card.Body>
+        <div>
+          <ListGroup.Item>Favourite Movies:
+             <div>
+              {favouriteMovies.length === 0 &&
+                <div className="value">No Favourite Movies have been added</div>
+              }
+              {favouriteMovies.length > 0 &&
+                <ul>
+                  {favouriteMovies.map(favoriteMovie =>
+                    (<li key={favoriteMovie}>
+                      <p className="favouriteMovies">
+                        {JSON.parse(localStorage.getItem('movies')).find(movie => movie._id === favoriteMovie).Title}
+                      </p>
+                      <Link to={`/movies/${favoriteMovie}`}>
+                        <Button size="sm" variant="info">Open</Button>
+                      </Link>
+                      <Button variant="secondary" size="sm" onClick={(event) => this.deleteMovieFromFavs(event, favoriteMovie)}>
+                        Delete
+                        </Button>
+                    </li>)
+                  )}
+                </ul>
+              }
+            </div>
+          </ListGroup.Item>
+        </div>
       </Card >
     )
   }
