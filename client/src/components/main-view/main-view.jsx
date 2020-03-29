@@ -97,7 +97,7 @@ class MainView extends React.Component {
     if (!movies) return <div className="main-view" />;
 
     return (
-      <Router>
+      <Router basename="/client">
         <header className="header">
           <nav className="navbar navbar-expand-sm navbar-dark">
             <a className="navbar-brand" href="/">MyFlix</a>
