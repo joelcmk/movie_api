@@ -1,33 +1,7 @@
-body {
-  background-color: #D3D0CB;
-}
-
-.loginContainer {
-  background-color: #44BBA4;
-  border-radius: 8px;
-  padding-bottom: 10px;
-  border: 3px solid green;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.loginButton {
-  background-color: #E7BB41;
-  color: #393E41;
-  border: 0;
-  margin-top: 10px;
-}
-
-.registerButton {
-  background-color: #393E41;
-  border: 0;
-}
 .card-container {
   width: 250px;
   padding: 0;
-  margin-top: 10px;
+  margin-top: 50px;
   margin-left: 0;
   border: 3px solid green;
   border-radius: 8px;
@@ -56,6 +30,35 @@ body {
 
 .card-title {
   text-align: center;
+}
+.movies-list {
+  margin-top: 65px;
+}
+body {
+  background-color: #D3D0CB;
+}
+
+.loginContainer {
+  background-color: #44BBA4;
+  border-radius: 8px;
+  padding-bottom: 10px;
+  border: 3px solid green;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loginButton {
+  background-color: #E7BB41;
+  color: #393E41;
+  border: 0;
+  margin-top: 10px;
+}
+
+.registerButton {
+  background-color: #393E41;
+  border: 0;
 }
 .back-button {
   background-color: #E7BB41;
@@ -136,6 +139,14 @@ ul {
 
 .navbar {
   background-color: #393E41;
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 500;
+  opacity: 95%;
+  height: 60px;
 }
 
 /*# sourceMappingURL=/src.78399e21.css.map */

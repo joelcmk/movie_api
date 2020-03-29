@@ -7,3 +7,11 @@
 .navbar {
   background-color: #393E41;
 }
+
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 500;
+  opacity: 95%;
+  height: 60px;
+}
