@@ -11,7 +11,7 @@ const passport = require('passport');
 const cors = require('cors');
 const { check, validationResult } = require('express-validator');
 require('./passport');
-const parh = require('path');
+const path = require('path');
 
 
 
