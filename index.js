@@ -29,7 +29,7 @@ app.use(cors());
 var auth = require('./auth')(app);
 
 app.use(express.static('public'));
-app.use("/client", express.static(path.join(__dirname, "client", "dist")));
+
 
 //Error handling middleware functions
 app.use(function (err, req, res, next) {
