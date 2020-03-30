@@ -22,7 +22,6 @@ mongoose.connect('mongodb+srv://myFlixDBadmin:Newyork_12@cluster0-3ykus.mongodb.
 
 //invoke middleware functions
 app.use(express.static('public'));
-app.use("/client", express.static(path.join(__dirname, "client", "dist")));
 app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(cors());
