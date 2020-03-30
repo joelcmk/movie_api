@@ -38,7 +38,7 @@ app.use(function (err, req, res, next) {
 app.use(express.static('public'));
 
 // routes all requests for the client to 'dist' folder
-app.use('/client', express.static(path.join(__dirname, 'client/dist')));
+app.use("/client", express.static(path.join(__dirname, "client", "dist")));
 // all routes to the React client
 
 /*
