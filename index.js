@@ -34,7 +34,16 @@ app.use(function (err, req, res, next) {
   next();
 });
 
+// routes all requests for static files to 'public' folder
 app.use(express.static('public'));
+
+// routes all requests for the client to 'dist' folder
+app.use('/client', express.static(path.join(__dirname, 'client/dist')));
+// all routes to the React client
+app.get('/client/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/dist', 'index.html'));
+});
+
 /*
 // Allowing only certain origins to be given access
 var allowedOrigins = ['http://localhost:8080', 'http://localhost:1234'];
