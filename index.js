@@ -21,9 +21,7 @@ mongoose.connect('mongodb+srv://myFlixDBadmin:Newyork_12@cluster0-3ykus.mongodb.
 
 
 //invoke middleware functions
-app.use(express.static('public'));
 app.use(morgan('common'));
-app.use(bodyParser.json());
 app.use(cors());
 
 
@@ -36,7 +34,7 @@ app.use(function (err, req, res, next) {
   next();
 });
 
-
+app.use(express.static('public'));
 /*
 // Allowing only certain origins to be given access
 var allowedOrigins = ['http://localhost:8080', 'http://localhost:1234'];
@@ -57,6 +55,8 @@ app.use(
   })
 );
 */
+
+app.use(bodyParser.json());
 
 // Gets the list of data about all the movies
 app.get("/Movies", passport.authenticate('jwt', { session: false }), function (req, res) {
