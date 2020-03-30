@@ -15,8 +15,8 @@ require('./passport');
 
 
 mongoose.set('useFindAndModify', false);
-//mongoose.connect('mongodb://localhost:27017/movies', {useNewUrlParser: true});
-mongoose.connect('mongodb+srv://myFlixDBadmin:Newyork_12@cluster0-3ykus.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/movies', { useNewUrlParser: true });
+//mongoose.connect('mongodb+srv://myFlixDBadmin:Newyork_12@cluster0-3ykus.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true });
 
 
 
