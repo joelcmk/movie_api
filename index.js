@@ -34,12 +34,7 @@ app.use(function (err, req, res, next) {
   next();
 });
 
-// routes all requests for static files to 'public' folder
 app.use(express.static('public'));
-
-// routes all requests for the client to 'dist' folder
-app.use("/client", express.static(path.join(__dirname, "client", "dist")));
-// all routes to the React client
 
 /*
 // Allowing only certain origins to be given access
@@ -63,6 +58,13 @@ app.use(
 */
 
 app.use(bodyParser.json());
+
+// Returns the Homepage
+app.get('/', function (req, res) {
+  var responseText =
+    'Welcome to the myFlix app. It provides information about movies.';
+  res.send(responseText);
+});
 
 // Gets the list of data about all the movies
 app.get("/Movies", passport.authenticate('jwt', { session: false }), function (req, res) {
