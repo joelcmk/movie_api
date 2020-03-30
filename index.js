@@ -40,9 +40,6 @@ app.use(express.static('public'));
 // routes all requests for the client to 'dist' folder
 app.use('/client', express.static(path.join(__dirname, 'client/dist')));
 // all routes to the React client
-app.get('/client/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/dist', 'index.html'));
-});
 
 /*
 // Allowing only certain origins to be given access
@@ -66,8 +63,6 @@ app.use(
 */
 
 app.use(bodyParser.json());
-
-app.use('/', passport.authenticate('jwt', { session: false }), indexRouter);
 
 // Gets the list of data about all the movies
 app.get("/Movies", passport.authenticate('jwt', { session: false }), function (req, res) {
