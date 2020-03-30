@@ -11,31 +11,24 @@ const passport = require('passport');
 const cors = require('cors');
 const { check, validationResult } = require('express-validator');
 require('./passport');
-const path = require('path');
 
 
 
 mongoose.set('useFindAndModify', false);
-//mongoose.connect('mongodb://localhost:27017/movies', { useNewUrlParser: true });
+//mongoose.connect('mongodb://localhost:27017/movies', {useNewUrlParser: true});
 mongoose.connect('mongodb+srv://myFlixDBadmin:Newyork_12@cluster0-3ykus.mongodb.net/myFlixDB?retryWrites=true&w=majority', { useNewUrlParser: true });
 
 
 
 //invoke middleware functions
+app.use(express.static('public'));
+app.use("/client", express.static(path.join(__dirname, "client", "dist")));
 app.use(morgan('common'));
+app.use(bodyParser.json());
 app.use(cors());
 
 
 var auth = require('./auth')(app);
-
-app.use(express.static('public'));
-
-// routes all requests for the client to 'dist' folder
-app.use("/client", express.static(path.join(__dirname, "client", "dist")));
-// all routes to the React client
-app.get("/client/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
-});
 
 //Error handling middleware functions
 app.use(function (err, req, res, next) {
@@ -43,8 +36,6 @@ app.use(function (err, req, res, next) {
   res.status(500).send('Something broke!');
   next();
 });
-
-
 
 
 /*
@@ -67,15 +58,6 @@ app.use(
   })
 );
 */
-
-app.use(bodyParser.json());
-
-// Returns the Homepage
-app.get('/', function (req, res) {
-  var responseText =
-    'Welcome to the myFlix app. It provides information about movies.';
-  res.send(responseText);
-});
 
 // Gets the list of data about all the movies
 app.get("/Movies", passport.authenticate('jwt', { session: false }), function (req, res) {
