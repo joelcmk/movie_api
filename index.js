@@ -67,6 +67,8 @@ app.use(
 
 app.use(bodyParser.json());
 
+app.use('/', passport.authenticate('jwt', { session: false }), indexRouter);
+
 // Gets the list of data about all the movies
 app.get("/Movies", passport.authenticate('jwt', { session: false }), function (req, res) {
   Movies.find().then(Movies => res.json(Movies));
