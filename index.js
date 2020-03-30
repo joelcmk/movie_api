@@ -27,6 +27,15 @@ app.use(cors());
 
 var auth = require('./auth')(app);
 
+app.use(express.static('public'));
+
+// routes all requests for the client to 'dist' folder
+app.use('/client', express.static(path.join(__dirname, 'client/dist')));
+// all routes to the React client
+app.get('/client/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/dist', 'index.html'));
+});
+
 //Error handling middleware functions
 app.use(function (err, req, res, next) {
   console.error(err.stack);
@@ -34,7 +43,8 @@ app.use(function (err, req, res, next) {
   next();
 });
 
-app.use(express.static('public'));
+
+
 
 /*
 // Allowing only certain origins to be given access
