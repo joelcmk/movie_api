@@ -45,9 +45,11 @@ app.use(morgan('common'));
 
 // Serve static file(s) in public folder
 app.use(express.static('public'));
-app.use("/client", express.static(path.join(__dirname, "client", "dist")));
-app.get("/client/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+// routes all requests for the client to 'dist' folder
+app.use('/client', express.static(path.join(__dirname, 'client/dist')));
+// all routes to the React client
+app.get('/client/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/dist', 'index.html'));
 });
 
 // Body-parser middleware used to read the body of HTTP requests, expected in JSON format
