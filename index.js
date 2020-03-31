@@ -51,7 +51,7 @@ const auth = require('./auth')(app);
 // Serve static file(s) in public folder
 app.use(express.static('public'));
 
-app.use("/client", express.static(path.join(__dirname, "client", "dist")));
+
 
 // error-handling middleware function that logs application-level errors to terminal
 app.use(function (err, req, res, next) {
@@ -63,6 +63,7 @@ app.use(function (err, req, res, next) {
 const Movies = Models.Movie;
 const Users = Models.User;
 
+app.use("/client", express.static(path.join(__dirname, "client", "dist")));
 
 // Gets the list of data about all the movies
 app.get("/Movies", passport.authenticate('jwt', { session: false }), function (req, res) {
