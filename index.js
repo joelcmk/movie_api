@@ -51,6 +51,8 @@ const auth = require('./auth')(app);
 // Serve static file(s) in public folder
 app.use(express.static('public'));
 
+app.use("/client", express.static(path.join(__dirname, "client", "dist")));
+
 // error-handling middleware function that logs application-level errors to terminal
 app.use(function (err, req, res, next) {
   console.error(err.stack);
