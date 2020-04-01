@@ -21,12 +21,12 @@ export function LoginView(props) {
       Username: username,
       Password: password
     })
-      .then(res => {
-        const authData = res.data;
-        props.onLoggedIn(authData);
+      .then(response => {
+        const data = response.data;
+        props.onLoggedIn(data);
       })
-      .catch(err => {
-        console.error(`User <${username}> not found.`);
+      .catch(e => {
+        console.log('no such user')
       });
   };
 
