@@ -38778,25 +38778,16 @@ function RegistrationView(props) {
     });
   };
 
-  return /*#__PURE__*/_react.default.createElement(_Form.default, {
-    className: "registration-form"
-  }, /*#__PURE__*/_react.default.createElement("h4", null, "Register to join myFlix:"), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
-    controlId: "formNewUsername"
+  return /*#__PURE__*/_react.default.createElement(_Container.default, {
+    className: "loginContainer"
+  }, /*#__PURE__*/_react.default.createElement("h1", null, "Creare a new account!"), /*#__PURE__*/_react.default.createElement("form", null, /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "formBasicUsename"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     type: "text",
-    placeholder: "Your username",
+    placeholder: "Username",
     value: username,
     onChange: function onChange(e) {
       return setUsername(e.target.value);
-    }
-  })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
-    controlId: "formPassword"
-  }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Password"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
-    type: "password",
-    placeholder: "Your Password",
-    value: password,
-    onChange: function onChange(e) {
-      return setPassword(e.target.value);
     }
   })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
     controlId: "formBasicEmail"
@@ -38807,25 +38798,28 @@ function RegistrationView(props) {
     onChange: function onChange(e) {
       return setEmail(e.target.value);
     }
-  }), /*#__PURE__*/_react.default.createElement(_Form.default.Text, {
-    className: "text-muted"
-  }, "We'll never share your email with anyone else.")), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
-    controlId: "formBirthday"
+  })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "formBasicPassword"
+  }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Password"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
+    type: "password",
+    placeholder: "Password",
+    value: password,
+    onChange: function onChange(e) {
+      return setPassword(e.target.value);
+    }
+  })), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+    controlId: "formBasicBirthday"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Birthday"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     type: "date",
-    placeholder: "MM/DD/YYYY",
+    placeholder: "Birthday",
     value: birthday,
     onChange: function onChange(e) {
       return setBirthday(e.target.value);
     }
-  })), /*#__PURE__*/_react.default.createElement("div", {
-    className: "text-center"
-  }, /*#__PURE__*/_react.default.createElement(_Button.default, {
-    className: "button-register",
-    variant: "info",
-    type: "submit",
+  })), /*#__PURE__*/_react.default.createElement(_Button.default, {
+    className: "loginButton",
     onClick: handleRegister
-  }, "Register")));
+  }, "Submit")));
 }
 },{"react":"../node_modules/react/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","axios":"../node_modules/axios/index.js"}],"components/genre-view/genre-view.jsx":[function(require,module,exports) {
 "use strict";
