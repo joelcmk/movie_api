@@ -40579,7 +40579,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         className: "navbar navbar-expand-sm navbar-dark"
       }, /*#__PURE__*/_react.default.createElement("a", {
         className: "navbar-brand",
-        href: "/"
+        href: "/client"
       }, "MyFlix"), /*#__PURE__*/_react.default.createElement("ul", {
         className: "navbar-nav ml-auto"
       }, /*#__PURE__*/_react.default.createElement("li", {

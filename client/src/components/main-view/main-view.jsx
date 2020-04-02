@@ -100,7 +100,7 @@ class MainView extends React.Component {
       <Router basename="/client">
         <header className="header">
           <nav className="navbar navbar-expand-sm navbar-dark">
-            <a className="navbar-brand" href="/">MyFlix</a>
+            <a className="navbar-brand" href="/client">MyFlix</a>
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
                 <Link to={`/users/${user}`}>
