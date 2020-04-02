@@ -40605,7 +40605,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
         className: "main-view"
       }, /*#__PURE__*/_react.default.createElement(_Row.default, null, /*#__PURE__*/_react.default.createElement(_reactRouterDom.Route, {
         exact: true,
-        path: "/",
+        path: "/client",
         render: function render() {
           if (!user) return /*#__PURE__*/_react.default.createElement(_loginView.LoginView, {
             onLoggedIn: function onLoggedIn(user) {
