@@ -38780,10 +38780,7 @@ function RegistrationView(props) {
 
   return /*#__PURE__*/_react.default.createElement(_Form.default, {
     className: "registration-form"
-  }, /*#__PURE__*/_react.default.createElement("img", {
-    className: "camera-logo",
-    src: cameraLogo
-  }), /*#__PURE__*/_react.default.createElement("h4", null, "Register to join myFlix:"), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
+  }, /*#__PURE__*/_react.default.createElement("h4", null, "Register to join myFlix:"), /*#__PURE__*/_react.default.createElement(_Form.default.Group, {
     controlId: "formNewUsername"
   }, /*#__PURE__*/_react.default.createElement(_Form.default.Label, null, "Username"), /*#__PURE__*/_react.default.createElement(_Form.default.Control, {
     type: "text",
@@ -40801,7 +40798,7 @@ var MyFlixApplication = /*#__PURE__*/function (_React$Component) {
 var container = document.getElementsByClassName('app-container')[0]; // Tell React to render our app in the root DOM element
 
 _reactDom.default.render(_react.default.createElement(MyFlixApplication), container);
-},{"path":"../../../../../../.npm/_npx/8052/lib/node_modules/parcel/node_modules/path-browserify/index.js","react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","redux":"../node_modules/redux/es/redux.js","react-redux":"../node_modules/react-redux/es/index.js","./components/main-view/main-view":"components/main-view/main-view.jsx","./reducers/reducers":"reducers/reducers.js","./index.scss":"index.scss"}],"../../../../../../.npm/_npx/20195/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"path":"../../../../../../.npm/_npx/8052/lib/node_modules/parcel/node_modules/path-browserify/index.js","react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","redux":"../node_modules/redux/es/redux.js","react-redux":"../node_modules/react-redux/es/index.js","./components/main-view/main-view":"components/main-view/main-view.jsx","./reducers/reducers":"reducers/reducers.js","./index.scss":"index.scss"}],"../../../../../../.npm/_npx/20994/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -40829,7 +40826,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54096" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60241" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -41005,5 +41002,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../../.npm/_npx/20195/lib/node_modules/parcel/src/builtins/hmr-runtime.js","index.jsx"], null)
+},{}]},{},["../../../../../../.npm/_npx/20994/lib/node_modules/parcel/src/builtins/hmr-runtime.js","index.jsx"], null)
 //# sourceMappingURL=/src.78399e21.js.map
