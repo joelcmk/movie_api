@@ -38772,7 +38772,7 @@ function RegistrationView(props) {
     }).then(function (response) {
       var data = response.data;
       console.log(data);
-      window.open('/', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
+      window.open('/client', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
     }).catch(function (e) {
       console.log('error registering the user');
     });
@@ -40558,7 +40558,7 @@ var MainView = /*#__PURE__*/function (_React$Component) {
       this.setState({
         user: null
       });
-      window.open('/', '_self');
+      window.open('/client', '_self');
     }
   }, {
     key: "render",
