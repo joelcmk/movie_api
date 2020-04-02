@@ -34,7 +34,6 @@ export function RegistrationView(props) {
   return (
 
     <Form className="registration-form">
-      <img className="camera-logo" src={cameraLogo} />
       <h4>Register to join myFlix:</h4>
       <Form.Group controlId="formNewUsername">
         <Form.Label>Username</Form.Label>
